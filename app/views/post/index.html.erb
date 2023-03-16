@@ -1,0 +1,3 @@
+<% @users.each do |user| %>
+        <%= button_to(user.email, "/user/#{user.id}",{method: :delete, form: {data: {turbo_confirm: "アカウントを削除していいですか？"}}})%>
+     <% end %>

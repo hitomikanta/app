@@ -1,0 +1,38 @@
+<body>
+<div class="line"><%= link_to "情報一覧はこちら",("/work_all")%></div>
+
+<p>ユーザー・一覧</p>
+    <div class="user-all">
+    <% @users.each do |user| %>
+             <div class="user-right">
+                <%= link_to(user.email, "/post/index")%>
+             </div>
+     <% end %>
+  </div>
+
+<p>
+  <% if user_signed_in? %>
+    ログイン中: <strong><%= current_user.email %></strong>.
+    <%= button_to destroy_user_session_path, method: :delete, class:"nav-link" do %>
+      ログアウト
+    <% end %>
+  <% else %>
+    <%= link_to '新規登録はこちら', new_user_registration_path %> |
+    <%= link_to 'ログインはこちら', new_user_session_path %>
+  <% end %>
+</p>
+
+<h1>勤怠アプリ</h1>
+<p id="realtime"></p>
+<div class="attend">
+<% if current_user.present? %>
+  <% if @user_nil_out_work.present? %>
+    <%= button_to "退勤する", work_time_path(@user_nil_out_work.id), method: :put %>
+  <% else %>
+    <%= button_to "出勤する", work_times_path, method: :post %>
+  <% end %>
+<% end %>
+</div>
+</body>
+
+

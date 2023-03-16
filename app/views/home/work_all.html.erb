@@ -1,0 +1,8 @@
+<% @work_times.each do |work| %>
+  <div style="border-bottom: 1px solid black">
+    <p>出勤時間: <%= work.in_work %></p>
+    <p>退勤時間: <%= work.out_work %></p>
+    <%= work.out_work - work.in_work%>
+    <p>ユーザー名: <%= work.user.email %></p>
+  </div>
+<% end %>
